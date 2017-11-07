@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<h1>Registration</h1>
+	<p>{{message}}</p>
+	<h3>Account Information</h3>
+	<form (submit)="onSubmit()">
+		Email:
+		<input 
+		type="text" 
+		name="email" 
+		required 
+		minlength="4" 
+		maxlength="24" 
+		[(ngModel)]="user.email" 
+		#email='ngModel'>
+		Errors: {{ email.errors | json }}
+		Valid: {{ email.valid | json }}
+		<br><br> First Name:
+		<input 
+		type="text" 
+		name="first_name" 
+		required minlength="4" 
+		maxlength="24" 
+		[(ngModel)]="user.first_name" 
+		#first_name='ngModel'>
+		Errors: {{ first_name.errors | json }}
+		Valid: {{ first_name.valid | json }}
+		<br><br> Last Name:
+		<input 
+		type="text" 
+		name="last_name" 
+		required 
+		minlength="4" 
+		maxlength="24" 
+		[(ngModel)]="user.last_name" 
+		#last_name='ngModel'>
+		Errors: {{ last_name.errors | json }}
+		Valid: {{ last_name.valid | json }}
+		<br><br> Password:
+		<input 
+		type="text" 
+		name="password" 
+		required 
+		minlength="10" 
+		maxlength="24" 
+		pattern="^([a-zA-Z0-9@*#]{8,15})$" 
+		[(ngModel)]="user.password"
+		#password='ngModel'>
+		Errors: {{ password.errors | json }}
+		Valid: {{ password.valid | json }}
+		<br><br> Password Confirmation:
+		<input 
+		type="text" 
+		name="passwordConfirm" 
+		required minlength="10" 
+		maxlength="24" 
+		pattern="^([a-zA-Z0-9@*#]{8,15})$" 
+		[(ngModel)]="user.password"
+		#password='ngModel'>
+		<br><br> Street Address:
+		<input 
+		type="text" 
+		name="address" 
+		required 
+		minlength="3" 
+		maxlength="50" 
+		[(ngModel)]="user.address" 
+		#address='ngModel'>
+		Errors: {{ address.errors | json }}
+		Valid: {{ address.valid | json }}
+		<br><br> Unit/Apt #:
+		<input 
+		type="text" 
+		name="apt" 
+		required 
+		minlength="1" 
+		maxlength="24" 
+		[(ngModel)]="user.apt" 
+		#apt='ngModel'>
+		Errors: {{ apt.errors | json }}
+		Valid: {{ apt.valid | json }}
+		<br><br> City
+		<input 
+		type="text" 
+		name="city" 
+		required 
+		minlength="4" 
+		maxlength="24" 
+		[(ngModel)]="user.city" 
+		#city='ngModel'>
+		Errors: {{ city.errors | json }}
+		Valid: {{ city.valid | json }}
+		<br><br>
+		State:
+		<select name="state" [(ngModel)]="user.state" #city='ngModel'>
+			<option value="CA">California</option>
+			<option value="OR">Oregon</option>
+			<option value="WA">Washington</option>
+		</select>
+		<br><br>
+		I am feeling lucky:
+		<input type="radio" name="lucky" value="yes"> Yes
+		<input type="radio" name="lucky" value="no"> No
+		<br><br>
+		<input *ngIf="email.valid && first_name.valid && last_name.valid && password.valid && address.valid && apt.valid && city.valid" type="submit">
+	</form>
+</body>
+
+</html>
